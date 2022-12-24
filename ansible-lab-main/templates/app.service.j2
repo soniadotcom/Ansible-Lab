@@ -1,0 +1,14 @@
+[Unit]
+Description=NyanCatSpringBootApp
+Requires=network.target
+After=network.target syslog.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Environment=PORT={{ app_port }}
+ExecStart=java -jar {{ app_dir }}/{{ app_file }} SuccessExitStatus=143
+User=jvmapps
+Restart=on-failure
+RestartSec=10
